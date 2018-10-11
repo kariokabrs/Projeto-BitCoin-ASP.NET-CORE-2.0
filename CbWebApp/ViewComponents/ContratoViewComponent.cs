@@ -21,7 +21,7 @@ namespace CbWebApp.ViewComponents
         {
             ContratoViewModel listaContrato = new ContratoViewModel
             {
-                Contratos = await ContratoSerivce.GetAllAsync()
+                Contratos = await ContratoSerivce.ContratoServiceGetAll()
             };
              return View(listaContrato);
         }

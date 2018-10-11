@@ -25,6 +25,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using System.Collections.Immutable;
+using CbWebApp.Repositories;
 #endregion
 
 namespace CbWebApp
@@ -125,6 +126,7 @@ namespace CbWebApp
 
             services.AddTransient<IEmailSender, EmailSender>();
             services.AddTransient<IContratoService, ContratoService>();
+            services.AddTransient<IContratoRepository, ContratoRepository>();
 
             // Adciona como Singleton o Startup.
             //services.AddSingleton(Configuration);
@@ -135,8 +137,8 @@ namespace CbWebApp
             if (env.IsDevelopment())
             {
                 app.UseBrowserLink();
-                //app.UseExceptionHandler("/Home/Error");
-                app.UseDeveloperExceptionPage();
+                app.UseExceptionHandler("/Home/Error");
+                //app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
             }
             else

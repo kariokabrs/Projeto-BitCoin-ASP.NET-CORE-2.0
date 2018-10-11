@@ -1,6 +1,5 @@
-﻿using CbWebApp.Context;
-using CbWebApp.Domains;
-using Microsoft.EntityFrameworkCore;
+﻿using CbWebApp.DTOs;
+using CbWebApp.Repositories;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,17 +8,17 @@ namespace CbWebApp.Services
 {
     public class ContratoService : IContratoService
     {
-        private readonly DB_A40F70_cbContext CbContext;
-        public ContratoService(DB_A40F70_cbContext cbContext)
+        private readonly IContratoRepository ContratoRepository;
+        public ContratoService(IContratoRepository contratoRepository)
         {
-            CbContext = cbContext;
+            ContratoRepository = contratoRepository;
         }
-       
-        public async Task<IEnumerable<Contrato>> GetAllAsync()
+
+        public async Task<IAsyncEnumerable<ContratoDTO>> ContratoServiceGetAll()
         {
-            List<Contrato> listaDeContrato = new List<Contrato>();
-            listaDeContrato = await CbContext.Contrato.AsNoTracking().OrderBy(c => c.NuContrato).ToListAsync();
-            return listaDeContrato.AsQueryable();
+            List<ContratoDTO> listaDeContrato = new List<ContratoDTO>();
+            listaDeContrato = await ContratoRepository.GetAllAsync().Result.Select(u => new ContratoDTO(u)).ToList();
+            return listaDeContrato.ToAsyncEnumerable();
         }
     }
 }
