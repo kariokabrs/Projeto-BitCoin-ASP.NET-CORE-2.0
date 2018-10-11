@@ -1,0 +1,105 @@
+﻿@model PaginaInicialViewModel
+
+@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService AuthorizationService
+
+<div class="container-fluid">
+
+    @if (!(await AuthorizationService.AuthorizeAsync(User, null, "RequerSecretario")).Succeeded)
+    {
+        <div>
+            <h4 class="bg-warning">Contratos para Vencimentos</h4>
+            <div class="row">
+                <form asp-action="PaginaInicial" asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
+                    <div class="col-xs-10 col-sm-5 col-md-4">
+                        <div class="form-group">
+                            <label>Período para Vencimento (em dias)</label>
+                            <select id="contratos" asp-for="FiltroDias" asp-items="Html.GetEnumSelectList<FiltroDias>()" class="form-control btn btn-default dropdown-toggle"></select>
+                        </div>
+                    </div>
+                    <div id="contratosPartial" class="col-xs-12 col-md-12">
+
+                        @await Component.InvokeAsync("Contrato")
+
+                    </div>
+                    <div id="log">
+                    </div>
+                </form>
+            </div>
+            <spam id="progress" style="display:none; text-align:center">
+                <img src="~/images/ajax-loader.gif" alt="Brand" />
+            </spam>
+            <span id="msg" style="color:red;display:none;" />
+        </div>
+
+        <div>
+            <h4 class="bg-warning">Parcelas para Pagamentos</h4>
+            <div class="row">
+                <form asp-action="PaginaInicial" asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
+                    <div class="col-xs-10 col-sm-5 col-md-4">
+                        <div class="form-group">
+                            <label>Período para Vencimento (em dias)</label>
+                            <select id="pagamentos" asp-for="FiltroDias" asp-items="Html.GetEnumSelectList<FiltroDias>()" class="form-control btn btn-default dropdown-toggle"></select>
+                        </div>
+                    </div>
+                    <div id="pagamentosPartial" class="col-xs-12 col-md-12">
+                        @await Html.PartialAsync("_Pagamentos")
+                    </div>
+                    <div id="pagamentosLog">
+                    </div>
+                </form>
+            </div>
+            <spam id="pagamentosProgress" style="display:none; text-align:center">
+                <img src="~/images/ajax-loader.gif" alt="Brand" />
+            </spam>
+            <span id="pagamentosMsg" style="color:red;display:none;" />
+        </div>
+
+    }
+    <div>
+        <h4 class="bg-warning">Lembrete de Anotações</h4>
+        <div class="row">
+            <form asp-action="PaginaInicial" asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
+                <div class="col-xs-10 col-sm-5 col-md-4">
+                    <div class="form-group">
+                        <label>Período para Vencimento (em dias)</label>
+                        <select id="lembretes" asp-for="FiltroDias" asp-items="Html.GetEnumSelectList<FiltroDias>()" class="form-control btn btn-default dropdown-toggle"></select>
+                    </div>
+                </div>
+                <div id="lembretesPartial" class="col-xs-12 col-md-12">
+                    @await Html.PartialAsync("_Lembretes")
+                </div>
+                <div id="lembretesLog">
+                </div>
+            </form>
+        </div>
+        <spam id="lembretesProgress" style="display:none; text-align:center">
+            <img src="~/images/ajax-loader.gif" alt="Brand" />
+        </spam>
+        <span id="lembretesMsg" style="color:red;display:none;" />
+    </div>
+
+    <div>
+        <h4 class="bg-warning">Aniversariantes</h4>
+        <div class="row">
+            <form asp-action="PaginaInicial" asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
+                <div class="col-xs-10 col-sm-5 col-md-4">
+                    <div class="form-group">
+                        <label>Período para Vencimento (em dias)</label>
+                        <select id="aniversariantes" asp-for="FiltroDias" asp-items="Html.GetEnumSelectList<FiltroDias>()" class="form-control btn btn-default dropdown-toggle"></select>
+                    </div>
+                </div>
+                <div id="aniversariantesPartial" class="col-xs-12 col-md-12">
+                    @await Html.PartialAsync("_Aniversariantes")
+                </div>
+                <div id="aniversariantesLog">
+                </div>
+            </form>
+        </div>
+        <spam id="aniversariantesProgress" style="display:none; text-align:center">
+            <img src="~/images/ajax-loader.gif" alt="Brand" />
+        </spam>
+        <span id="aniversariantesMsg" style="color:red;display:none;" />
+    </div>
+
+</div>

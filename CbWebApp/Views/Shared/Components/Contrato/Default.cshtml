@@ -1,0 +1,33 @@
+﻿@model CbWebApp.Models.ContratoViewModel
+
+<div class="table-responsive">
+    <table class="table table-striped table-dark">
+        <thead>
+            <tr>
+                <th scope="col">Contrato</th>
+                <th scope="col">Valor</th>
+                <th scope="col">Período</th>
+                <th scope="col">Data Emissão</th>
+                <th scope="col">Data Retorno</th>
+                <th scope="col">Filial</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Contratos != null)
+            {
+                @foreach (var item in Model.Contratos)
+                {
+
+                    <tr>
+                        <th scope="row">@item.NuContrato</th>
+                        <td>@item.VlContrato</td>
+                        <td>36</td>
+                        <td>@item.DtEmissao</td>
+                        <td>@item.DtRetorno</td>
+                        <td>Rio de Janeiro</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

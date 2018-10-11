@@ -9062,7 +9062,7 @@ jQuery.ajaxTransport( function( options ) {
 					options.type,
 					options.url,
 					options.async,
-					options.username,
+					options.Email,
 					options.password
 				);
 

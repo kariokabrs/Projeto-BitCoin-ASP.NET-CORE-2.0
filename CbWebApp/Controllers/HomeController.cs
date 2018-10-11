@@ -1,35 +1,94 @@
-﻿using System;
+﻿using CbWebApp.Models;
+using CbWebApp.Services;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using CbWebApp.Models;
 
 namespace CbWebApp.Controllers
 {
+    /// <summary>
+    /// Controller da página inicial
+    /// </summary>
     public class HomeController : Controller
     {
+        private readonly IContratoService ContratoSerivce;
+
+        public HomeController(IContratoService contratoSerivce)
+        {
+            ContratoSerivce = contratoSerivce;
+        }
+        [AllowAnonymous]
+        [HttpGet]
         public IActionResult Index()
         {
-            return View();
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            else
+            {
+                return View(nameof(PaginaInicial));
+            }
         }
 
-        public IActionResult About()
+        [Authorize]
+        [Route("")]
+        [HttpGet]
+        public ViewResult PaginaInicial()
         {
-            ViewData["Message"] = "Log in.";
-
             return View();
-        }
+         }
 
-        public IActionResult Contact()
+        [Authorize]
+        [HttpGet]
+        public IActionResult Contratos(string id)
         {
-            ViewData["Message"] = "Jájá fica mais bonitinho seu fresco.";
-
-            return View();
+            if (ModelState.IsValid)
+            {
+                return ViewComponent("Contrato");
+                //return PartialView("_Pagamentos");
+            }
+            return PartialView("_Pagamentos");
         }
 
-        public IActionResult Error()
+        [Authorize]
+        [HttpGet]
+        public PartialViewResult Pagamentos(string id)
+        {
+            if (ModelState.IsValid)
+            {
+                return PartialView("_Pagamentos");
+            }
+            return PartialView("_Pagamentos");
+        }
+
+        [Authorize]
+        [HttpGet]
+        public PartialViewResult Lembretes(string id)
+        {
+            if (ModelState.IsValid)
+            {
+                return PartialView("_Pagamentos");
+            }
+            return PartialView("_Pagamentos");
+        }
+
+        [Authorize]
+        [HttpGet]
+        public PartialViewResult Aniversariantes(string id)
+        {
+            if (ModelState.IsValid)
+            {
+                return PartialView("_Pagamentos");
+            }
+            return PartialView("_Pagamentos");
+        }
+
+        [AllowAnonymous]
+        public ViewResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }

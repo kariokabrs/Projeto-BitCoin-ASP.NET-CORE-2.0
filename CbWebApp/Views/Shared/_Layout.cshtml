@@ -4,21 +4,21 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <meta property="description" content="Sistema de Entrega Domiciliar. Compras de supermecado, mercado , shopping center, farmácia com entrega na sua casa" />
-        <meta property="og:title" content="Sistema de Entrega Domiciliar. Compras de supermecado, mercado , shopping center, farmácia com entrega na sua casa" />
-        <meta property="og:url" content="http://www.alphaebeta.com" />
-        <meta property="og:description" content="Sistema de Entrega Domiciliar. Compras de supermecado, mercado , shopping center, farmácia com entrega na sua casa" />
+    @*<meta property="description" content="teste" />
+        <meta property="og:title" content="teste" />
+        <meta property="og:url" content="http://www.teste.com" />
+        <meta property="og:description" content="teste" />
         <meta property="og:image" content="/assets/coverr_new_meta_image-fd686adb473cb21d0f6af1c70d8adbab.jpg" />
-        <meta name="google-site-verification" content="PUIw6OhsS-xx6WGCH6u_H8ISVMLVvj7VTgvFNXF-KqA" />
+        <meta name="google-site-verification" content="PUIw6OhsS-xx6WGCH6u_H8ISVMLVvj7VTgvFNXF-KqA" />*@
 
-    <title>@ViewData["Title"] - alpha e Beta</title>
+    <title>Consultoria Bitcoin</title>
 
     <environment include="Development,Staging,Production">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     </environment>
     <environment exclude="Development,Staging,Production">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -30,57 +30,56 @@
 
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
 
-    <video class="video" muted autoplay="autoplay" loop="loop" preload="auto" poster="~/images/Air-shuttle.jpg">
-        <source src="~/images/Air-shuttle.mp4" type="video/mp4" />Your browser does not support the video tag. I suggest you upgrade your browser.
-        <source src="~/images/Air-shuttle.webm" type="video/webm" />Your browser does not support the video tag. I suggest you upgrade your browser.
-    </video>
-    @*<nav class="navbar navbar-default navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#myPage">Logo</a>
-                </div>
-                <div class="collapse navbar-collapse" id="myNavbar">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#about">ABOUT</a></li>
-                        <li><a href="#services">SERVICES</a></li>
-                        <li><a href="#portfolio">PORTFOLIO</a></li>
-                        <li><a href="#pricing">PRICING</a></li>
-                        <li><a href="#contact">CONTACT</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>*@
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-default" data-offset-top="10" data-offset-bottom="10">
         <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#first">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">&alpha;lpha<strong> &amp;</strong> &beta;eta IT</a>
+                <a asp-area="" asp-controller="Account" asp-action="Login" class="navbar-brand">
+                    <img src="~/images/consultoria-de-bitcoin.png" alt="Brand" />
+                </a>
             </div>
-            <div class="navbar-collapse collapse" id="myNavbar">
+            <div class="navbar-collapse collapse" id="first">
+
                 <ul class="nav navbar-nav">
-                    <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "active" : "")">
-                        <a asp-area="" asp-controller="Home" asp-action="Index"><i class="fa fa-home fa-lg"></i> Home</a>
-                    </li>
-                    <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "About" ? "active" : "")">
-                        <a asp-area="" asp-controller="Home" asp-action="About"><i class="fa fa-atlas fa-lg"></i> Gestão Online</a>
-                    </li>
-                    <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Contact" ? "active" : "")">
-                        <a asp-area="" asp-controller="Home" asp-action="Contact"><i class="fa fa-street-view fa-lg"></i> Help Me</a>
-                    </li>
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "PaginaInicial" ? "active" : "")">
+                            <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Register" ? "active" : "")">
+                            <a asp-area="" asp-controller="Account" asp-action="Register">Usuários</a>
+                        </li>
+                        <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Contrato" ? "active" : "")">
+                            <a asp-area="" asp-controller="Sistema" asp-action="Contrato">Contratos</a>
+                        </li>
+                        <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Relatorio" ? "active" : "")">
+                            <a asp-area="" asp-controller="Sistema" asp-action="Relatorio">Relatórios</a>
+                        </li>
+                        <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Parametrizacao" ? "active" : "")">
+                            <a asp-area="" asp-controller="Sistema" asp-action="Parametrizacao">Parametrização</a>
+                        </li>
+                        <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Lembrete" ? "active" : "")">
+                            <a asp-area="" asp-controller="Sistema" asp-action="Lembrete">Lembrete</a>
+                        </li>
+                    }
+                    @*<li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Ajuda" ? "active" : "")">
+                            <a asp-area="" asp-controller="Home" asp-action="Ajuda"><i class="fa fa-street-view fa-lg"></i> Ajuda</a>
+                        </li>*@
                 </ul>
+                @await Html.PartialAsync("_LoginPartial")
             </div>
         </div>
     </nav>
+
     <div class="container body-content">
 
         @RenderBody()
@@ -90,25 +89,10 @@
                 <span class="fas fa-angle-up logo5"></span>
             </a>
 
-            @*<div id="googleMap" style="width:50%;height:100px"></div>*@
-            @*<svg class="text-center" height="80" width="700">
-            <g fill="none">
-                <path stroke="black" d="M5 20 l325 0" />
-                <path stroke="red" d="M5 40 l325 0" />
-                <path stroke="black" d="M5 60 l325 0" />
-            </g>
-            Sorry, your browser does not support inline SVG.
-        </svg>*@
-
-            <div class="felix">
-                <img alt="Felix" src="@Url.Content("~/images/felix.gif")" title="Felix" />
-            </div>  
             <hr />
-            <p class="pfooter">&copy; 2018 - ASP.NET Core by Sergio dos Santos Rezende</p>
-            @*<canvas id="canvas" width="100" height="100" contextmenu="Sergio"
-                style="background-color:black;opacity:0.6">
 
-        </canvas>*@
+            <p class="pfooter">&copy; 2018 - Desenvolvido by Sergio dos Santos Rezende e Daniel Lobak</p>
+
         </footer>
 
     </div>
@@ -135,5 +119,7 @@
     </environment>
 
     @RenderSection("Scripts", required: false)
+
 </body>
+
 </html>

@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore;
+﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
 
 namespace CbWebApp
 {
+    /// <summary>
+    /// Classe responsável pelo início do sistema web.
+    /// </summary>
     public class Program
     {
         public static void Main(string[] args)
@@ -19,7 +15,13 @@ namespace CbWebApp
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>()
-                .Build();
+                           .UseStartup<Startup>()
+                           .UseKestrel(options =>
+                           {
+                               options.AddServerHeader = false;
+                           })
+                           .UseSetting("https_port", "8080")
+                           .Build();
     }
 }
+
