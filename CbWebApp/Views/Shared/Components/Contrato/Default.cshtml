@@ -15,9 +15,8 @@
         <tbody>
             @if (Model.Contratos != null)
             {
-                @foreach (var item in Model.Contratos)
+                @foreach (var item in Model.Contratos.ToEnumerable())
                 {
-
                     <tr>
                         <th scope="row">@item.NuContrato</th>
                         <td>@item.VlContrato</td>

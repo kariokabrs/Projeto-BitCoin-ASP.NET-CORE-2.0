@@ -1,15 +1,16 @@
-﻿using System;
-using CbWebApp.Domains;
+﻿using CbWebApp.Domains;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace CbWebApp.Context
 {
+    /// <summary>
+    /// Contexto da Conexão com o banco da Consultoria Bitcoin
+    /// </summary>
     public partial class DB_A40F70_cbContext : DbContext
     {
-
         public DB_A40F70_cbContext(DbContextOptions<DB_A40F70_cbContext> options) : base(options) { }
-     
+
+        #region DBSet
         public virtual DbSet<BancoUsuario> BancoUsuario { get; set; }
         public virtual DbSet<Contrato> Contrato { get; set; }
         public virtual DbSet<ContratoParcela> ContratoParcela { get; set; }
@@ -21,6 +22,7 @@ namespace CbWebApp.Context
         public virtual DbSet<Propriedade> Propriedade { get; set; }
         public virtual DbSet<PropriedadeDominio> PropriedadeDominio { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
+        #endregion
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

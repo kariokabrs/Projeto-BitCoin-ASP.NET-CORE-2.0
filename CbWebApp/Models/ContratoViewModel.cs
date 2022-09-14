@@ -1,10 +1,10 @@
-﻿using CbWebApp.Domains;
+﻿using CbWebApp.DTOs;
 using System.Collections.Generic;
 
 namespace CbWebApp.Models
 {
     public class ContratoViewModel
     {
-      public IEnumerable<Contrato> Contratos { get; set; }
+      public IAsyncEnumerable<ContratoDTO> Contratos { get; set; }
     }
 }
